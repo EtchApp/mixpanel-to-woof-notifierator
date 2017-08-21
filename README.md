@@ -8,7 +8,7 @@ All users created over the time period will be included in a single email and a 
 
 ## Overview Diagram
 
-![overview diagram](https://github.com/drewrothstein/mixpanel-to-woof/raw/master/errata/notifier.png)
+![overview diagram](https://github.com/drewrothstein/mixpanel-to-woof-notifierator/raw/master/errata/notifier.png)
 
 ## What does it do?
 
