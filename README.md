@@ -80,7 +80,11 @@ $ gcloud --project PROJECT_ID iam service-accounts keys create key.json \
 
 This creates a Service Account and a JSON file with the credentials which we can use to encrypt / decrypt our secrets outside of KMS.
 
-One of the easiest ways to interact with Google KMS is to start with the samples from the GCP Samples [Here](https://github.com/GoogleCloudPlatform/python-docs-samples). Once you have this repository cloned, you will create a keyring and cryptokey:
+One of the easiest ways to interact with Google KMS is to start with the samples from the GCP Samples [Here](https://github.com/GoogleCloudPlatform/python-docs-samples).
+
+A quick note about compatibility. If you already have this repository cloned, a [change](https://github.com/GoogleCloudPlatform/python-docs-samples/commit/e0f957c816a42117a02c3d6db09e0611c15d4c70) was pushed that updates how blobs are encoded/decoded. It is not backwards compatible with previous code and will error your application at runtime with something like the SO post mentioned in the commit. This code is updated to support *only* the new encoding/decoding but if you have trouble because you previously cloned this reposity, `git pull`, re-encrypt and you should be good to go.
+
+Once you have this repository cloned, you will create a keyring and cryptokey:
 ```
 $ gcloud --project PROJECT_ID kms keyrings create KEYRING_NAME --location global
 
