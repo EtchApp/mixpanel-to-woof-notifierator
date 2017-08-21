@@ -1,0 +1,9 @@
+cron:
+- description: notifier half-hour
+  url: /run/30
+  schedule: every 30 minutes
+  target: cron
+- description: notifier daily
+  url: /run/1440
+  schedule: every day 14:00
+  target: cron
