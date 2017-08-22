@@ -22,7 +22,7 @@ All users created over the time period will be included in a single email and a 
 
 ### SMS Notification
 
-![sms_notification](https://github.com/drewrothstein/mixpanel-to-woof-notifierator/raw/master/errata/sms_notification.png)
+![sms_notification](https://github.com/drewrothstein/mixpanel-to-woof-notifierator/raw/master/errata/sms_notification_small.png)
 
 ## What does it do?
 
