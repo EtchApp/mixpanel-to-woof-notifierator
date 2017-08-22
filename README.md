@@ -10,6 +10,20 @@ All users created over the time period will be included in a single email and a 
 
 ![overview diagram](https://github.com/drewrothstein/mixpanel-to-woof-notifierator/raw/master/errata/notifier.png)
 
+## Screenshots
+
+### Cron Schedule
+
+![cron schedule](https://github.com/drewrothstein/mixpanel-to-woof-notifierator/raw/master/errata/cron_schedule.png)
+
+### Email Notification
+
+![email notification](https://github.com/drewrothstein/mixpanel-to-woof-notifierator/raw/master/errata/email_notification.png)
+
+### SMS Notification
+
+![sms_notification](https://github.com/drewrothstein/mixpanel-to-woof-notifierator/raw/master/errata/sms_notification.png)
+
 ## What does it do?
 
 It exports all new users names and emails from MixPanel People properties at the specified run interval.
