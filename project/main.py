@@ -31,6 +31,8 @@ TO_ADDRESS          = 'contact@foobar.com'      # noqa: E221
 SUBJECT             = '[app name] new users'    # noqa: E221
 APP_SMS_PREFIX      = '[app name] '             # noqa: E221
 FROM_PHONE          = '+1..........'            # noqa: E221
+EXCLUDE_NAMES       = ['...',                   # noqa: E221
+                       '...']
 TO_PHONES           = ['+1..........',          # noqa: E221
                        '+1..........',
                        '+1..........']
@@ -118,10 +120,11 @@ def cleanup_mixpanel_data(results):
 
     for user in results['results']:
         try:
-            cleaned_up_data[user['$properties']['$email']] = user['$properties']['$name']   # noqa: E501
+            if user['$properties']['$name'] not in EXCLUDE_NAMES:
+                cleaned_up_data[user['$properties']['$email']] = user['$properties']['$name']   # noqa: E501
         # Missing values are entirely possible, this is analytics data!
         except (KeyError, ValueError) as error:
-            logging.error('An error occurred cleaning up data: {0}'.format(error))          # noqa: E501
+            logging.error('An error occurred cleaning up data: {0}'.format(error))              # noqa: E501
             logging.error('User data: {0}'.format(user))
             pass
 
