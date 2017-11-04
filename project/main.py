@@ -121,10 +121,15 @@ def cleanup_mixpanel_data(results):
     for user in results['results']:
         try:
             if user['$properties']['$name'] not in EXCLUDE_NAMES:
-                cleaned_up_data[user['$properties']['$email']] = user['$properties']['$name']   # noqa: E501
+                device_model = user['$properties'].get('$ios_device_model', 'Unknown')           # noqa: E501
+                device_version = user['$properties'].get('$ios_version', 'Unknown')              # noqa: E501
+                cleaned_up_data[user['$properties']['$email']] = {
+                    'name': user['$properties']['$name'],
+                    'device': 'Device: {0}, Running: {1}'.format(device_model, device_version),  # noqa: E501
+                }
         # Missing values are entirely possible, this is analytics data!
         except (KeyError, ValueError) as error:
-            logging.error('An error occurred cleaning up data: {0}'.format(error))              # noqa: E501
+            logging.error('An error occurred cleaning up data: {0}'.format(error))               # noqa: E501
             logging.error('User data: {0}'.format(user))
             pass
 
@@ -134,9 +139,9 @@ def cleanup_mixpanel_data(results):
 def send_mail(new_users, time_formatted):
     """Send mail with list of new users."""
     message_body = 'New users for the last {0}\n\n'.format(time_formatted)
-    for email, full_name in new_users.iteritems():
-        message_body = '{0}Name: {1}\nEmail: {2}\n\n'.format(
-            message_body, full_name, email)
+    for email, full_name, device in new_users.iteritems():
+        message_body = '{0}Name: {1}\nEmail: {2}\nDevice: {3}\n\n'.format(
+            message_body, full_name, email, device)
 
     message = mail.EmailMessage(
         sender='contact@{0}.appspotmail.com'.format(
